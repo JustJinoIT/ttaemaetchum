@@ -1,0 +1,26 @@
+# 때맞춤 규칙 설정 (횟수형 = 현행, 점수형 = 마일리지 대비 틀)
+# 출처: 고용노동부 상담 답변(2024.10, 2026.3), 고용24 안내, 고용센터 공지(2022.7 개편).
+# confirm: true 인 값은 자료마다 달라 제출/운영 전 공식 확인이 필요한 설정값이다.
+mode: count            # count(횟수형) | points(점수형, 시연용 가정값)
+online_window: {start: "00:00", end: "17:00"}
+must_attend_rounds: [1, 4]
+types:
+  general:             # 일반수급자
+    bands:
+      - {from_round: 2, to_round: 4, total: 1, job_min: 0, jobs_only: false}
+      - {from_round: 5, to_round: 99, total: 2, job_min: 1, jobs_only: false,
+         confirm: true, note: "2026.3 상담 답변은 4차부터, 2024.10 답변은 5차부터"}
+  repeat:              # 반복수급자 (5년 내 3회 이상)
+    bands:
+      - {from_round: 2, to_round: 3, total: 1, job_min: 1, jobs_only: true, confirm: true}
+      - {from_round: 4, to_round: 99, total: 2, job_min: 2, jobs_only: true}
+  senior:              # 60세 이상
+    bands:
+      - {from_round: 2, to_round: 99, total: 1, job_min: 0, jobs_only: false}
+quotas:                # 수급기간 전체 구직외활동 상한 (60세 이상·장애인은 별도)
+  lecture_total: 3
+  lecture_online: 2
+points:                # 점수형: 공식 기준 미공고. 아래는 시연용 가정값이며 공식 값이 아니다.
+  demo_only: true
+  target: 10
+  value: {job: 4, lecture: 2, training: 3}
